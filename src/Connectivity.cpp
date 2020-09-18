@@ -23,6 +23,10 @@ void Connectivity::send_state_change_boolean(int itemId, boolean value, int stat
     send_to_cloud(get_change_boolean_state_message(itemId, value, statusCode));
 }
 
+void Connectivity::send_state_change_int(int itemId, int value, int statusCode) {
+    send_to_cloud(get_change_int_state_message(itemId, value, statusCode));
+}
+
 void Connectivity::send_item_status(int itemId, int statusCode) {
     send_to_cloud(get_change_item_status_message(itemId, statusCode));
 }
@@ -54,6 +58,10 @@ String Connectivity::get_change_double_state_message(int itemId, double value, i
 String Connectivity::get_change_boolean_state_message(int itemId, boolean value, int statusCode) {
   String valueStr = value ? "1" : "0";
   return get_change_state_message(itemId, valueStr, "BOOLEAN", statusCode);
+}
+
+String Connectivity::get_change_int_state_message(int itemId, int value, int statusCode) {
+    return get_change_state_message(itemId, String(value), "INT", statusCode);
 }
 
 String Connectivity::get_change_state_message(int itemId, String value, String type, int statusCode) {

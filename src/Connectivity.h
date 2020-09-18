@@ -23,6 +23,8 @@ class Connectivity {
 
         void send_state_change_boolean(int itemId, boolean value, int statusCode);
 
+        void send_state_change_int(int itemId, int value, int statusCode);
+
         void send_item_status(int itemId, int statusCode);
 
         void send_device_status(int statusCode);
@@ -45,6 +47,8 @@ class Connectivity {
         String get_change_double_state_message(int itemId, double value, int statusCode);
 
         String get_change_boolean_state_message(int itemId, boolean value, int statusCode);
+
+        String get_change_int_state_message(int itemId, int value, int statusCode);
 
         String get_change_state_message(int itemId, String value, String type, int statusCode);
 
