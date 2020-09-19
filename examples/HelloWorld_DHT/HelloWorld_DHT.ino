@@ -30,13 +30,16 @@ void loop() {
   double feuchtigkeit = (double) dht.readHumidity();    // Lesen der Luftfeuchtigkeit
   double temperatur = (double) dht.readTemperature(); // Lesen der Temperatur
   
-/** Wir überprüfen, ob die Sensorwerte richtig gelesen wurden*/ 
+  //Wir überprüfen, ob die Sensorwerte richtig gelesen wurden
   if (isnan(feuchtigkeit)){ 
+    //Wenn nicht, dann senden wir einen STATUS_ERROR für das entsprechende Item
     connectivity.send_item_status(ITEM_MOISTURE, STATUS_ERROR);
   }else{
+    //Wenn alles in Ordnung ist übermitteln wir den Wert mit dem STATUS_OK Statuscode.
     connectivity.send_state_change_double(ITEM_MOISTURE, feuchtigkeit, STATUS_OK);
   }
 
+  // Und das gleiche nochmal für die Temperatur
   if (isnan(temperatur)) {
     connectivity.send_item_status(ITEM_TEMP, STATUS_ERROR);
   }else{
