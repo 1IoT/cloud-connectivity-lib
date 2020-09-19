@@ -11,7 +11,10 @@ bool newDataAvailable = false;
  * Public
  ********************************************************/
 
-Connectivity::Connectivity(Serial *serialToUse) {
+Connectivity::Connectivity() {
+}
+
+void Connectivity::begin(Serial *serialToUse){
     this.pSerial = serialToUse;
     this.pSerial.begin(115200);
 }

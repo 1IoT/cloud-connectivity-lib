@@ -17,7 +17,10 @@
 
 class Connectivity {
     public:
-        Connectivity(Serial *serialToUse);
+
+        Connectivity();
+
+	void begin(Serial *serialToUse);
 
         void send_state_change_double(int itemId, double value, int statusCode);
 
