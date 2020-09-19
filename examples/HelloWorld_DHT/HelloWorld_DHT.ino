@@ -14,11 +14,10 @@ const int ITEM_MOISTURE = 2;
 // Das Object über welches wir auf den Sensor zugreifen       
 DHT dht(DHTPIN, DHTTYPE);
 // Die Objekte für die serielle Kommunikation mit dem Modul
-Connectivity connectivity;
+Connectivity connectivity(&Serial1);
 Message message;
 
 void setup() {
-  Serial.begin(115200); //Dieser serielle Anschluss wird automatisch von der Connectivity Library verwendet.
   // Wird benötigt, um später die Sensorwerte zu lesen.
   dht.begin();
 }

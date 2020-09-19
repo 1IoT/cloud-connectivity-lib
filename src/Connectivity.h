@@ -42,6 +42,8 @@ class Connectivity {
         
 
     private:
+        Serial *pSerial;
+        
         void send_to_cloud(String message);
 
         String get_change_double_state_message(int itemId, double value, int statusCode);

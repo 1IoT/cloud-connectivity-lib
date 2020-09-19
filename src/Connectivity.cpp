@@ -11,8 +11,9 @@ bool newDataAvailable = false;
  * Public
  ********************************************************/
 
-Connectivity::Connectivity() {
-
+Connectivity::Connectivity(Serial *serialToUse) {
+    this.pSerial = serialToUse;
+    this.pSerial.begin(115200);
 }
 
 void Connectivity::send_state_change_double(int itemId, double value, int statusCode) {
@@ -48,7 +49,7 @@ void Connectivity::send_device_log(String level, String message) {
  ********************************************************/
 
 void Connectivity::send_to_cloud(String message) {
-    Serial.println(message);
+    this.pSerial.println(message);
 }
 
 String Connectivity::get_change_double_state_message(int itemId, double value, int statusCode){
@@ -83,7 +84,7 @@ Message Connectivity::get_incoming_message() {
     readSerial();
     
     if(newDataAvailable){
-        Serial.println(receivedChars);
+        this.pSerial.println(receivedChars);
         //Serial.println(strcat("Received: ", receivedChars));
         item = handle_state_change(receivedChars);
         resetSerial();
@@ -102,8 +103,8 @@ void Connectivity::readSerial() {
     static byte ndx = 0;
     char endMarker = '\n';
     char rc;
-    while (Serial.available() > 0 && newDataAvailable == false) {
-        rc = Serial.read();
+    while (this.pSerial.available() > 0 && newDataAvailable == false) {
+        rc = this.pSerial.read();
         if (rc != endMarker) {
             receivedChars[ndx] = rc;
             ndx++;
