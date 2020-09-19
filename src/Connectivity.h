@@ -17,7 +17,7 @@
 
 class Connectivity {
     public:
-        Connectivity();
+        Connectivity(Serial *serialToUse);
 
         void send_state_change_double(int itemId, double value, int statusCode);
 
@@ -43,7 +43,7 @@ class Connectivity {
 
     private:
         Serial *pSerial;
-        
+
         void send_to_cloud(String message);
 
         String get_change_double_state_message(int itemId, double value, int statusCode);
