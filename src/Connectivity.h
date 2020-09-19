@@ -45,7 +45,7 @@ class Connectivity {
         
 
     private:
-        Serial *pSerial;
+        HardwareSerial *pSerial;
 
         void send_to_cloud(String message);
 
