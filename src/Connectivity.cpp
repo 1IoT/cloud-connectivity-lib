@@ -15,8 +15,8 @@ Connectivity::Connectivity() {
 }
 
 void Connectivity::begin(HardwareSerial *serialToUse){
-    this.pSerial = serialToUse;
-    this.pSerial.begin(115200);
+    this->pSerial = serialToUse;
+    this->pSerial.begin(115200);
 }
 
 void Connectivity::send_state_change_double(int itemId, double value, int statusCode) {
@@ -87,7 +87,7 @@ Message Connectivity::get_incoming_message() {
     readSerial();
     
     if(newDataAvailable){
-        this.pSerial.println(receivedChars);
+        this->pSerial.println(receivedChars);
         //Serial.println(strcat("Received: ", receivedChars));
         item = handle_state_change(receivedChars);
         resetSerial();
@@ -106,8 +106,8 @@ void Connectivity::readSerial() {
     static byte ndx = 0;
     char endMarker = '\n';
     char rc;
-    while (this.pSerial.available() > 0 && newDataAvailable == false) {
-        rc = this.pSerial.read();
+    while (this->pSerial.available() > 0 && newDataAvailable == false) {
+        rc = this->pSerial.read();
         if (rc != endMarker) {
             receivedChars[ndx] = rc;
             ndx++;
