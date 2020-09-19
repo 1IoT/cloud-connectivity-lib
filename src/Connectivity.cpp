@@ -14,7 +14,7 @@ bool newDataAvailable = false;
 Connectivity::Connectivity() {
 }
 
-void Connectivity::begin(Serial *serialToUse){
+void Connectivity::begin(HardwareSerial *serialToUse){
     this.pSerial = serialToUse;
     this.pSerial.begin(115200);
 }

@@ -20,7 +20,7 @@ class Connectivity {
 
         Connectivity();
 
-	void begin(Serial *serialToUse);
+	void begin(HardwareSerial *serialToUse);
 
         void send_state_change_double(int itemId, double value, int statusCode);
 
